@@ -1,0 +1,56 @@
+{
+	"info": {
+		"_postman_id": "4d86ac4f-2699-46a3-a80a-3592a71fe175",
+		"name": "PaymentFacility",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get invoice details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify UID\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.showInvoiceReference).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{pfDevBaseURL}}/:uuID",
+					"host": [
+						"{{pfDevBaseURL}}"
+					],
+					"path": [
+						":uuID"
+					],
+					"variable": [
+						{
+							"key": "uuID",
+							"value": "51c68b67-6a4a-4e9c-b684-a63feae3cf0a"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "pfDevBaseURL",
+			"value": "https://www.action-pay.actionstepdev.com/api"
+		}
+	]
+}
